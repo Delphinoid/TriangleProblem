@@ -25,7 +25,7 @@ real vec2Dot(const vec2 a, const vec2 b){
 	return a.x*b.x + a.y*b.y;
 }
 real vec2Magnitude(const vec2 v){
-	return sqrt(v.x*v.x + v.y*v.y);
+	return sqrtl(v.x*v.x + v.y*v.y);
 }
 real vec2Angle(const vec2 a, const vec2 b, const vec2 c){
 	const vec2 ab = vec2Subtract(b, a);
@@ -35,7 +35,7 @@ real vec2Angle(const vec2 a, const vec2 b, const vec2 c){
 
 real ConstraintTest(const real m){
 
-	// Calculates the current magnitude of the error.
+	// Calculates the current value of <BKL.
 
 	// BK is some line from the point (1, 0) to K
 	// with slope m, given by the following equation:
@@ -62,33 +62,33 @@ real ConstraintTest(const real m){
 	const real slopeK = (msqrt+1.0)/m;
 	const real j = sqrtl(2.0*K.x);
 
-    // The point A has y coordinate 0.5, as the
-    // triangle is an isosceles. The intersection
-    // of the infinite line CK with y = 1/2 gives
-    // the x coordinate, and the magnitude of the
-    // line segment CA - j gives the length i.
-    const vec2 A = {
-    	.x = 0.5,
-    	.y = slopeK*0.5
-    };
-    const real magnitudeA = vec2Magnitude(A);
-    const real i = magnitudeA - j;
+	// The point A has y coordinate 0.5, as the
+	// triangle is an isosceles. The intersection
+	// of the infinite line CK with y = 1/2 gives
+	// the x coordinate, and the magnitude of the
+	// line segment CA - j gives the length i.
+	const vec2 A = {
+		.x = 0.5,
+		.y = slopeK*0.5
+	};
+	const real magnitudeA = vec2Magnitude(A);
+	const real i = magnitudeA - j;
 
-    // From here, we can find point L, which is
-    // i from B towards A:
-    // L = B + BA/|A| * i
-    const vec2 L = {
-    	.x = 1.0 - i*0.5/magnitudeA,
-    	.y = i*A.y/magnitudeA
-    };
+	// From here, we can find point L, which is
+	// i from B towards A:
+	// L = B + BA/|A| * i
+	const vec2 L = {
+		.x = 1.0 - i*0.5/magnitudeA,
+		.y = i*A.y/magnitudeA
+	};
 
-    // Finally, we can calculate the angle BKL.
-    // The constraint on this angle is 50 degrees.
-    const vec2 B = {
-    	.x = 1.0,
-    	.y = 0.0
-    };
-    return vec2Angle(B, K, L);
+	// Finally, we can calculate the angle BKL.
+	// The constraint on this angle is 50 degrees.
+	const vec2 B = {
+		.x = 1.0,
+		.y = 0.0
+	};
+	return vec2Angle(B, K, L);
 
 }
 
@@ -103,13 +103,13 @@ real alpha(const real m){
 
 	// Using the lengths of the triangle BCK,
 	// calculate the angle <BCK.
-    // <BCK = arccos(j/2)
-    const real angleBCK = acosl(j*0.5) * RADIANS_TO_DEGREES;
+	// <BCK = arccos(j/2)
+	const real angleBCK = acosl(j*0.5) * RADIANS_TO_DEGREES;
 
-    // The sum of a 3-sided polygon's angles
-    // add up to 180 degrees. Therefore:
-    // alpha = 180 - 2(<BCK)
-    return 180.0 - 2.0*angleBCK;
+	// The sum of a 3-sided polygon's angles
+	// add up to 180 degrees. Therefore:
+	// alpha = 180 - 2(<BCK)
+	return 180.0 - 2.0*angleBCK;
 
 }
 

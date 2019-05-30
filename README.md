@@ -1,8 +1,8 @@
 # Problem
-![alt text](https://raw.githubusercontent.com/Delphinoid/TriangleProblem/master/Problem.jpg)
+![Problem](https://raw.githubusercontent.com/Delphinoid/TriangleProblem/master/Problem.jpg)
 
 # Solution
-![alt text](https://raw.githubusercontent.com/Delphinoid/TriangleProblem/master/Result.png)
+![Solution](https://raw.githubusercontent.com/Delphinoid/TriangleProblem/master/Result.png)
 
 # Algorithm Visualization
-![alt text](https://raw.githubusercontent.com/Delphinoid/TriangleProblem/master/Visualization.png)
+![Algorithm Visualization](https://raw.githubusercontent.com/Delphinoid/TriangleProblem/master/Visualization.png)
